@@ -5,14 +5,14 @@
 
 <?php function get_page_content() { ?>
 
+	<!-- container -->
 	<div class="container-fluid">
 		
-		<div class="jumbotron bg-light text-dark">
-			
-			<h1>Where's The Food?</h1>
-			<p>Your all-time favorite pinoy foods</p>
+		<!-- main row -->
+		<div class="row">
 
-		</div> <!-- end jumbotron -->
+
+		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
 

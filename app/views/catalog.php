@@ -9,113 +9,152 @@
 		global $conn;
 	?>
 
-	<!-- main row -->
-	<div class="row no-gutters">
+	<!-- container -->
+	<div class="container">
 
-		<!-- categories -->
-		<div class="col-10 offset-1 col-md-2 offset-md-1">
+		<!-- main row -->
+		<div class="row">
 
-			<h3 class="my-3 text-center">Categories</h3>
+			<!-- categories -->
+			<div class="col-lg-2">
 
-			<!-- category links -->
-			<ul class="list-group">
 
-				<li class="list-group-item  p-0">
-					<a class="btn btn-dark btn-block" href="?">All</a>
-				</li>
+				<div class="row">
 
-				<?php
-					$for_cat_query="SELECT * FROM categories";
-					$cat_query=mysqli_query($conn, $for_cat_query);
-				?>
+					<div class="col-12 col-md-6 col-lg-12">
 
-				<?php foreach($cat_query as $cat) { ?>
-					<li class="list-group-item  p-0">
-						<a class="btn btn-dark btn-block" href="?category=<?php echo $cat["id"] ?>"><?php echo $cat["name"] ?></a>
-					</li>
-				<?php } ?>
+						<h3 class="my-3 text-center">Categories</h3>
 
-			</ul> <!-- end category links -->
+						<!-- category links -->
+						<ul class="list-group border">
 
-			<h3 class="my-3 text-center">Sort</h3>
+							<a href="?">
+									<li class="list-group-item text-light bg-dark mb-1">
+										All
+									</li>
+							</a>
 
-			<!-- sort links -->
-			<ul class="list-group">
-				<li class="list-group-item p-0">
-					<a class="btn btn-dark btn-block" href="../controllers/sort.php?sort=name_asc">A to Z</a>
-				</li>
-				<li class="list-group-item p-0">
-					<a class="btn btn-dark btn-block" href="../controllers/sort.php?sort=name_des">Z to A</a>
-				</li>
-				<li class="list-group-item p-0">
-					<a class="btn btn-dark btn-block" href="../controllers/sort.php?sort=price_asc">Price (Lowest to Highest)</a>
-				</li>
-				<li class="list-group-item p-0">
-					<a class="btn btn-dark btn-block" href="../controllers/sort.php?sort=price_des">Price (Highest to Lowest)</a>
-				</li>
-			</ul> <!-- end sort links -->
-			
-		</div> <!-- end categories -->
+							<?php
+								$for_cat_query="SELECT * FROM categories";
+								$cat_query=mysqli_query($conn, $for_cat_query);
+							?>
 
-		<!-- items -->
-		<div class="col-10 offset-1 col-md-8 offset-md-0">
+							<?php foreach($cat_query as $cat) { ?>
+								<a href="?category=<?php echo $cat["id"] ?>">
+									<li class="list-group-item text-light bg-dark mb-1">
+										<?php echo $cat["name"] ?>
+									</li>
+								</a>
+							<?php } ?>
 
-			<!-- items row -->
-			<div class="row no-gutters">
+						</ul> <!-- end category links -->
 
-				<!-- catalog heading -->
-				<div class="col-12">
-					<h1 class="my-3 text-center">CATALOG</h1>
-				</div> <!-- end catalog heading -->
+					</div> <!-- col -->
 
-				<?php
-					$where_query = "";
-					if(isset($_GET["category"])) $where_query = "WHERE category_id='" . $_GET["category"] . "'";
 
-					$order_by_query = "";
-					if(isset($_SESSION["sort"])) $order_by_query = " ORDER BY " . $_SESSION["sort"];
+					<div class="col-12 col-md-6 col-lg-12">
 
-					$query = "SELECT * FROM items " . $where_query . $order_by_query;
+						<h3 class="my-3 text-center">Sort</h3>
 
-					$retrieve_items_query = mysqli_query($conn, $query);
-				?>
+						<!-- sort links -->
+						<ul class="list-group border">
+							<a href="../controllers/sort.php?sort=name_asc">
+								<li class="list-group-item text-light bg-dark mb-1">
+									A to Z
+								</li>
+							</a>
+							<a href="../controllers/sort.php?sort=name_des">
+								<li class="list-group-item text-light bg-dark mb-1">
+									Z to A
+								</li>
+							</a>
+							<a href="../controllers/sort.php?sort=price_asc">
+								<li class="list-group-item text-light bg-dark mb-1">
+									Price (Lowest to Highest)
+								</li>
+							</a>
+							<a href="../controllers/sort.php?sort=price_des">
+								<li class="list-group-item text-light bg-dark mb-1">
+									Price (Highest to Lowest)
+								</li>
+							</a>
+						</ul> <!-- end sort links -->
 
-				<!-- items generator -->
-				<?php foreach($retrieve_items_query as $item) { ?>
+					</div> <!-- end col -->
 
-					<!-- item col -->
-					<div class="col-md-6 col-lg-4">
-						
-						<!-- item div -->
-						<div class="p-2">
+				</div> <!-- end row -->
+				
+			</div> <!-- end categories -->
 
-							<!-- item card -->
-							<div class="card h-100">
+			<!-- items -->
+			<div class="col-lg-10">
 
-								<img class="card-img-top" src="<?php echo $item["image_path"]; ?>">
+				<!-- items container -->
+				<div class="container">
 
-								<div class="card-body">
-									<h4 class="card-title"><?php echo $item["name"]; ?></h4>
-									<p class="card-text">
-										<small class="text-muted">"<?php echo $item["description"] ?>"</small>
-										<br>
-										<?php echo $item["price"] ?>
-									</p>
+					<!-- items row -->
+					<div class="row">
 
-								</div>
+						<!-- catalog heading -->
+						<div class="col-12">
+							<h1 class="my-3 text-center">CATALOG</h1>
+						</div> <!-- end catalog heading -->
 
-							</div> <!-- end item card -->
+						<?php
+							$where_query = "";
+							if(isset($_GET["category"])) $where_query = "WHERE category_id='" . $_GET["category"] . "'";
 
-						</div> <!-- end item div -->
+							$order_by_query = "";
+							if(isset($_SESSION["sort"])) $order_by_query = " ORDER BY " . $_SESSION["sort"];
 
-					</div> <!-- end item col -->
+							$query = "SELECT * FROM items " . $where_query . $order_by_query;
 
-				<?php } ?> <!-- items generator -->
+							$retrieve_items_query = mysqli_query($conn, $query);
+						?>
 
-			</div> <!-- end items row -->
+						<!-- items generator -->
+						<?php foreach($retrieve_items_query as $item) { ?>
 
-		</div> <!-- end items -->
+							<!-- item col -->
+							<div class="col-md-6 col-lg-4">
 
-	</div> <!-- end main row -->
+								<!-- item card -->
+								<div class="card h-100">
+
+									<img class="card-img-top" src="<?php echo $item["image_path"]; ?>">
+									<div class="card-body">
+										<h4 class="card-title">
+											<?php echo $item["name"]; ?>
+										</h4>
+										<p class="card-text">
+											<small class="text-muted">"<?php echo $item["description"] ?>"</small>
+											<br>
+											<?php echo $item["price"] ?>
+										</p>
+
+
+									</div> <!-- carb body -->
+
+									<!-- add to cart -->
+									<div class="card-footer">
+										<input type="number" class="form-control" value="1">
+										<button type="button" class="btn btn-block btn-outline-dark add-to-cart" data-id="<?php echo $item["id"] ?>">Add to cart</button>
+									</div> <!-- end add to cart -->
+
+								</div> <!-- end item card -->
+
+							</div> <!-- end item col -->
+
+						<?php } ?> <!-- items generator -->
+
+					</div> <!-- end items row -->
+
+				</div> <!-- end items container -->
+
+			</div> <!-- end items -->
+
+		</div> <!-- end main row -->
+
+	</div> <!-- end container -->
 
 <?php } ?>

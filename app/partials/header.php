@@ -19,21 +19,35 @@
 
 			<li class="nav-item">
 				<a class="nav-link" href="#">Cart
-					<span class="badge badge-danger text-light" id="cart-count">0</span>
+					<span class="badge badge-danger text-light" id="cart-count">
+						
+						<?php 
+							if(isset($_SESSION["cart"])) {
+								echo array_sum($_SESSION["cart"]);
+							} else echo "0";
+						?>
+
+					</span>
 				</a>
 			</li>
 
-			<li class="nav-item">
-				<a class="nav-link" href="#">Login</a>
-			</li>
+			<?php if(isset($_SESSION["user"])): ?>
+				<li class="nav-item">
+					<a class="nav-link" href="../controllers/logout.php">Logout</a>
+				</li>
 
-			<li class="nav-item <?php if($pageTitle=="Register") echo "active"; ?>">
-				<a class="nav-link" href="../views/register.php">Register</a>
-			</li>
+			<?php else: ?>
 
-			<li class="nav-item">
-				<a class="nav-link" href="#">Home</a>
-			</li>
+				<li class="nav-item <?php if($pageTitle=="Login") echo "active"; ?>">
+					<a class="nav-link" href="../views/login.php">Login</a>
+				</li>
+
+				<li class="nav-item <?php if($pageTitle=="Register") echo "active"; ?>">
+					<a class="nav-link" href="../views/register.php">Register</a>
+				</li>
+
+			<?php endif; ?>
+
 		</ul>
 	</div>
 	

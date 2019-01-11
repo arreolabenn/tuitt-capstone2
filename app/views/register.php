@@ -1,77 +1,100 @@
 <?php
 	$pageTitle = "Register";
 	require_once("../partials/template.php");
+
+	if(isset($_SESSION["user"])) {
+		header("Location: ../../index.php");
+	}
 ?>
 
 <?php function get_page_content() { ?>
 
-	<!-- main row -->
-	<div class="row no-gutters">
-	
-		<!-- main col -->
-		<div class="col-10 offset-1 col-md-8 offset-md-2">
+	<?php
+		global $conn;
+	?>
 
-			<h1 class="my-3 text-center">REGISTER</h1>
+	<!-- container -->
+	<div class="container-fluid">
 
-			<!-- form -->
-			<form class="mb-5">
-				
-				<!-- row -->
-				<div class="row no-gutters">
+		<!-- main row -->
+		<div class="row">
+		
+			<!-- main col -->
+			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
 
-					<!-- first half -->
-					<div class="col-md-6">
+				<h1 class="my-3 text-center">REGISTER</h1>
 
-						<div class="form-group  p-2">	
-							<label>First Name: </label>
-							<input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter first name">
-						</div>
+				<!-- form -->
+				<form>
+					
+					<!-- row -->
+					<div class="row">
 
-						<div class="form-group  p-2">	
-							<label>Last Name: </label>
-							<input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter last name">
-						</div>
+						<!-- left side -->
+						<div class="col-md-6">
 
-						<div class="form-group  p-2">	
-							<label>E-mail Address: </label>
-							<input type="email" name="email" id="email" class="form-control" placeholder="Enter email address">
-						</div>
+							<div class="form-group">	
+								<label for="firstname">First Name: </label>
+								<input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter first name">
+								<span class="validation text-danger"></span>
+							</div>
 
-						<div class="form-group  p-2">	
-							<label>Address: </label>
-							<input type="address" name="address" id="address" class="form-control" placeholder="Enter home address">
-						</div>
+							<div class="form-group">	
+								<label for="lastname">Last Name: </label>
+								<input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter last name">
+								<span class="validation text-danger"></span>
+							</div>
 
-					</div> <!-- end first half -->
-				
-					<!-- second half -->
-					<div class="col-md-6">
+							<div class="form-group">	
+								<label for="email">E-mail Address: </label>
+								<input type="email" name="email" id="email" class="form-control" placeholder="Enter email address">
+								<span class="validation text-danger"></span>
+							</div>
 
-						<div class="form-group p-2">	
-							<label>Username: </label>
-							<input type="text" name="username" id="username" class="form-control" placeholder="Enter username">
-						</div>
+							<div class="form-group">	
+								<label for="address">Address: </label>
+								<input type="address" name="address" id="address" class="form-control" placeholder="Enter home address">
+								<span class="validation text-danger"></span>
+							</div>
 
-						<div class="form-group  p-2">	
-							<label>Password: </label>
-							<input type="password" name="password" id="password" class="form-control" placeholder="Enter password">
-						</div>
+						</div> <!-- end left side -->
+					
+						<!-- right side -->
+						<div class="col-md-6">
 
-						<div class="form-group  p-2">	
-							<label>Confirm Password: </label>
-							<input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password">
-						</div>
+							<div class="form-group">	
+								<label for="username">Username: </label>
+								<input type="text" name="username" id="username" class="form-control" placeholder="Enter username (min. of 10 characters)">
+								<span class="validation text-danger"></span>
+							</div>
 
-					</div> <!-- end second half -->
+							<div class="form-group">	
+								<label for="password">Password: </label>
+								<input type="password" name="password" id="password" class="form-control" placeholder="Enter password">
+								<span class="validation text-danger"></span>
+							</div>
 
-					<button type="button" id="registerBtn" class="btn btn-primary w-25 ml-auto mt-3">Register</button>
+							<div class="form-group">	
+								<label for="confirmPassword">Confirm Password: </label>
+								<input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password">
+								<span class="validation text-danger"></span>
+							</div>
 
-				</div> <!-- end row -->
+						</div> <!-- end right side -->
 
-			</form> <!-- end form -->
+					</div> <!-- end row -->
 
-		</div> <!-- end main col -->
+				</form> <!-- end form -->
 
-	</div> <!-- end main row -->
+				<div class="text-center py-4 mb-5">
+					<a href="login.php" class="btn btn-secondary">Login</a>
+					<button type="button" id="registerBtn" class="btn btn-primary">Register</button>
+				</div>
+
+			</div> <!-- end main col -->
+
+		</div> <!-- end main row -->
+
+	</div> <!-- container -->
 
 <?php } ?>
