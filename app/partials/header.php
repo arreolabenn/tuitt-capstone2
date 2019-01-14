@@ -10,20 +10,22 @@
 	<div class="collapse navbar-collapse" id="navbar-links">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item <?php if($pageTitle=="Home") echo "active"; ?>">
-				<a class="nav-link" href="../views/home.php">Home</a>
+				<a class="nav-link" href="./home.php">Home</a>
 			</li>
 
 			<li class="nav-item <?php if($pageTitle=="Catalog") echo "active"; ?>">
-				<a class="nav-link" href="../views/catalog.php">Catalog</a>
+				<a class="nav-link" href="./catalog.php">Catalog</a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Cart
+				<a class="nav-link" href="./cart.php">Cart
 					<span class="badge badge-danger text-light" id="cart-count">
 						
 						<?php 
 							if(isset($_SESSION["cart"])) {
-								echo array_sum($_SESSION["cart"]);
+								if(array_sum($_SESSION["cart"]) > 999) {
+									echo "999+";
+								} else echo array_sum($_SESSION["cart"]);
 							} else echo "0";
 						?>
 
@@ -39,11 +41,11 @@
 			<?php else: ?>
 
 				<li class="nav-item <?php if($pageTitle=="Login") echo "active"; ?>">
-					<a class="nav-link" href="../views/login.php">Login</a>
+					<a class="nav-link" href="./login.php">Login</a>
 				</li>
 
 				<li class="nav-item <?php if($pageTitle=="Register") echo "active"; ?>">
-					<a class="nav-link" href="../views/register.php">Register</a>
+					<a class="nav-link" href="./register.php">Register</a>
 				</li>
 
 			<?php endif; ?>

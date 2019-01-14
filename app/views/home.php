@@ -5,7 +5,7 @@
 
 <?php function get_page_content() { ?>
 
-	<div class="container-fluid">
+	<div class="container  p-2">
 		
 		<div class="jumbotron bg-light text-dark mt-3 text-center shadow">
 			

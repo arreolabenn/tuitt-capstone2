@@ -14,7 +14,7 @@
 	?>
 
 	<!-- container -->
-	<div class="container-fluid">
+	<div class="container  p-2">
 
 		<!-- main row -->
 		<div class="row">

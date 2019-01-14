@@ -10,7 +10,7 @@
 	?>
 
 	<!-- container -->
-	<div class="container">
+	<div class="container p-2">
 
 		<!-- main row -->
 		<div class="row">
@@ -137,7 +137,7 @@
 
 									<!-- add to cart -->
 									<div class="card-footer">
-										<input type="number" class="form-control" value="1">
+										<input type="number" class="form-control" value="1" min="0">
 										<button type="button" class="btn btn-block btn-outline-dark add-to-cart" data-id="<?php echo $item["id"] ?>">Add to cart</button>
 									</div> <!-- end add to cart -->
 
