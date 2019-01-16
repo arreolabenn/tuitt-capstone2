@@ -1,10 +1,11 @@
 <?php
+	session_start();
+	if(isset($_SESSION["user"])) {
+		header("location: ../../index.php");
+	}
+
 	$pageTitle = "Register";
 	require_once("../partials/template.php");
-
-	if(isset($_SESSION["user"])) {
-		header("Location: ../../index.php");
-	}
 ?>
 
 <?php function get_page_content() { ?>

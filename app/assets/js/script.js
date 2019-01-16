@@ -260,4 +260,90 @@ $(document).ready( function() {
 
 	}); //end delete cart button
 
+	function validate_user_update() {
+
+		let error = 0;
+		const firstname = $("#firstname").val();
+		const lastname = $("#lastname").val();
+		const email = $("#email").val();
+		const address = $("#address").val();
+
+		//email should include the @ symbol
+		if(!email.includes("@")) {
+			$("#email").next().html("Please provide a valid email");
+			errors++;
+		} else {
+			$("#email").next().html("");
+		}
+
+		//address
+		if(address == "") {
+			$("#address").next().html("Please provide a valid address");
+			errors++;
+		} else {
+			$("#address").next().html("");
+		}
+
+		//firstname
+		if(firstname == "") {
+			$("#firstname").next().html("Please provide a first name");
+			errors++;
+		} else {
+			$("#firstname").next().html("");
+		}
+
+		//lastname
+		if(lastname == "") {
+			$("#lastname").next().html("Please provide a last name");
+			errors++;
+		} else {
+			$("#lastname").next().html("");
+		}
+
+		if(errors > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	//submit profile form updates
+	$(document).on( "click", "#update_info", function(){
+
+		if(validate_user_update()) {
+
+			const id = $("#user_id").val();
+			const firstname = $("#firstname").val();
+			const lastname = $("#lastname").val();
+			const email = $("#email").val();
+			const address = $("#address").val();
+			const password = $("#password").val();
+
+			$.ajax({
+				method: "POST",
+				url: "../controllers/update_profile.php",
+				data: {
+					user_id: id,
+					firstname: firstname,
+					lastname: lastname,
+					email: email,
+					address: address,
+					password: password
+				},
+				success: function(data) {
+
+					if(data=="success") {
+						alert("changed user information");
+					} else {
+						alert("invalid password");
+					}
+
+				}
+			}); //end submit profile ajax
+
+		} //end validate_user_update()
+
+	}); //end submit profile form updates
+
+
 }); //end document ready

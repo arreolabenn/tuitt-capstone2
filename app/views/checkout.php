@@ -1,10 +1,11 @@
 <?php
+	session_start();
+	if(!isset($_SESSION["user"])) {
+		header("location: ./login.php");
+	}
+
 	$pageTitle = "Checkout";
 	require_once("../partials/template.php");
-
-	if(!isset($_SESSION["user"])) {
-		header("Location: ./login.php");
-	}
 ?>
 
 <?php function get_page_content() { 
@@ -19,7 +20,7 @@
 				
 				<h1 class="my-3 text-center">Hello, welcome to your checkout page</h1>
 
-				<form method="POST" action="../controllers/paceorder.php">
+				<form method="POST" action="../controllers/placeorder.php">
 					
 					<div class="container">
 
@@ -62,7 +63,7 @@
 												$cartTotal += $subTotal;
 											}
 
-											echo $cartTotal;
+											echo number_format($cartTotal, 2, ".", "");
 										?>
 									</p>
 
@@ -103,7 +104,7 @@
 									<?php } ?>
 									</tbody>
 
-							</table> <!-- end table -->
+								</table> <!-- end table -->
 
 							</div> <!-- end table responsive -->
 							

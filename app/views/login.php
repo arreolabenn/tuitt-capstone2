@@ -1,22 +1,23 @@
 <?php
+	session_start();
+	if(isset($_SESSION["user"])) {
+		header("location: ../../index.php");
+	}
+
 	$pageTitle = "Login";
 	require_once("../partials/template.php");
-
-	if(isset($_SESSION["user"])) {
-		header("Location: ../../index.php");
-	}
 ?>
 
 <?php function get_page_content() { ?>
 
 	<!-- container -->
-	<div class="container  p-2">
+	<div class="container p-2">
 		
 		<!-- main row -->
 		<div class="row">
 
 			<!-- main col -->
-			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+			<div class="col-lg-10 offset-md-1 col-lg-8 offset-lg-2">
 
 				<h1 class="my-3 text-center">LOGIN</h1>
 

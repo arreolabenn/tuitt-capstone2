@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$pageTitle = "Cart";
 	require_once("../partials/template.php");
 ?>

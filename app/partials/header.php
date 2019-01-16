@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
 	<a class="navbar-brand" href="">Where's The Food?</a>
@@ -17,7 +16,7 @@
 				<a class="nav-link" href="./catalog.php">Catalog</a>
 			</li>
 
-			<li class="nav-item">
+			<li class="nav-item <?php if($pageTitle=="Cart") echo "active"; ?>">
 				<a class="nav-link" href="./cart.php">Cart
 					<span class="badge badge-danger text-light" id="cart-count">
 						
@@ -34,6 +33,11 @@
 			</li>
 
 			<?php if(isset($_SESSION["user"])): ?>
+
+				<li class="nav-item <?php if($pageTitle=="Profile") echo "active"; ?>">
+					<a class="nav-link" href="./profile.php">Profile</a>
+				</li>
+
 				<li class="nav-item">
 					<a class="nav-link" href="../controllers/logout.php">Logout</a>
 				</li>
