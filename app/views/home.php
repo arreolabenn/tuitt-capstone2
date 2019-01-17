@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$pageTitle = "Home";
 	require_once("../partials/template.php");
 ?>

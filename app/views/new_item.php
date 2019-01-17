@@ -1,11 +1,12 @@
 <?php
-	session_start();
 	$pageTitle = "New Item";
 	require_once("../partials/template.php");
 ?>
 
 <?php function get_page_content() { ?>
 <?php global $conn ?>
+
+	<?php if(isset($_SESSION["user"]) && $_SESSION["user"]["role_id"] == 1): ?>
 
 	<!-- container -->
 	<div class="container p-2">
@@ -66,5 +67,9 @@
 		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

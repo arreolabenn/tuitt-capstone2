@@ -1,15 +1,18 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["user"])) {
-		header("location: ./login.php");
-	}
-
 	$pageTitle = "Checkout";
 	require_once("../partials/template.php");
 ?>
 
 <?php function get_page_content() { 
 		global $conn;
+	?>
+
+	<?php if(!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["role_id"] == 2): ?>
+
+	<?php
+		if(!isset($_SESSION["user"])) {
+			header("location: ./login.php");
+		}
 	?>
 
 	<div class="container p-2">
@@ -119,5 +122,9 @@
 		</div> <!-- end row -->
 		
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 	
 <?php } ?>

@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$pageTitle = "Catalog";
 	require_once("../partials/template.php");
 ?>
@@ -9,6 +8,8 @@
 	<?php 
 		global $conn;
 	?>
+
+	<?php if(!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["role_id"] == 2): ?>
 
 	<!-- container -->
 	<div class="container p-2">
@@ -117,7 +118,7 @@
 						<?php foreach($retrieve_items_query as $item) { ?>
 
 							<!-- item col -->
-							<div class="col-md-6 col-lg-4">
+							<div class="col-md-6 col-lg-4 py-1">
 
 								<!-- item card -->
 								<div class="card h-100">
@@ -157,5 +158,9 @@
 		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

@@ -1,10 +1,17 @@
 <?php
-	session_start();
-	$pageTitle = "Home";
+	$pageTitle = "Confirmation";
 	require_once("../partials/template.php");
 ?>
 
 <?php function get_page_content() { ?>
+
+	<?php if(!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["role_id"] == 2): ?>
+
+	<?php
+		if(!isset($_SESSION["user"])) {
+			header("location: ./login.php");
+		}
+	?>
 
 	<!-- container -->
 	<div class="container-fluid">
@@ -34,5 +41,9 @@
 		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

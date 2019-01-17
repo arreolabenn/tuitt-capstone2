@@ -10,8 +10,6 @@
 	$address = $_POST["address"];
 	$password = $_POST["password"];
 
-	// echo $id . " " . $firstname . " " . $lastname . " " . $email . " " . $address . " " . $password . "<br>";
-
 	$sql = "SELECT password FROM users WHERE id=$id";
 	$query = mysqli_query($conn, $sql);
 	$result = mysqli_fetch_assoc($query);

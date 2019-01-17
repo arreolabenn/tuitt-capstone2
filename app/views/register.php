@@ -1,9 +1,4 @@
 <?php
-	session_start();
-	if(isset($_SESSION["user"])) {
-		header("location: ../../index.php");
-	}
-
 	$pageTitle = "Register";
 	require_once("../partials/template.php");
 ?>
@@ -13,6 +8,8 @@
 	<?php
 		global $conn;
 	?>
+
+	<?php if(!isset($_SESSION["user"])): ?>
 
 	<!-- container -->
 	<div class="container  p-2">
@@ -97,5 +94,9 @@
 		</div> <!-- end main row -->
 
 	</div> <!-- container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$pageTitle = "Cart";
 	require_once("../partials/template.php");
 ?>
@@ -9,6 +8,8 @@
 	global $conn;
 
 	?>
+
+	<?php if(!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["role_id"] == 2): ?>
 
 	<div class="container p-2">
 
@@ -91,5 +92,9 @@
 		</div>	<!-- end row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

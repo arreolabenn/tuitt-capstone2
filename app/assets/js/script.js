@@ -262,27 +262,12 @@ $(document).ready( function() {
 
 	function validate_user_update() {
 
-		let error = 0;
+		let errors = 0;
 		const firstname = $("#firstname").val();
 		const lastname = $("#lastname").val();
 		const email = $("#email").val();
 		const address = $("#address").val();
-
-		//email should include the @ symbol
-		if(!email.includes("@")) {
-			$("#email").next().html("Please provide a valid email");
-			errors++;
-		} else {
-			$("#email").next().html("");
-		}
-
-		//address
-		if(address == "") {
-			$("#address").next().html("Please provide a valid address");
-			errors++;
-		} else {
-			$("#address").next().html("");
-		}
+		const password = $("#password").val();
 
 		//firstname
 		if(firstname == "") {
@@ -300,6 +285,32 @@ $(document).ready( function() {
 			$("#lastname").next().html("");
 		}
 
+		//email should include the @ symbol
+		if(!email.includes("@")) {
+			$("#email").next().html("Please provide a valid email");
+			errors++;
+		} else {
+			$("#email").next().html("");
+		}
+
+		//address
+		if(address == "") {
+			$("#address").next().html("Please provide a valid address");
+			errors++;
+		} else {
+			$("#address").next().html("");
+		}
+
+		//password should be atleast 8 characters
+		if(password.length < 8) {
+			$("#password").next().html("Password is required to make changes");
+			errors++;
+		} else {
+			$("#password").next().html("");
+		}
+
+		console.log(errors);
+
 		if(errors > 0) {
 			return false;
 		} else {
@@ -308,7 +319,10 @@ $(document).ready( function() {
 	}
 
 	//submit profile form updates
-	$(document).on( "click", "#update_info", function(){
+	$(document).on( "click", "#update_info", function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
 
 		if(validate_user_update()) {
 
@@ -345,5 +359,93 @@ $(document).ready( function() {
 
 	}); //end submit profile form updates
 
+	function validate_password_update() {
+
+		let errors = 0;
+		const password = $("#change_cur_password").val();
+		const new_password = $("#change_new_password").val();
+		const confirm_new_password = $("#change_confirm_new_password").val();
+
+		//password should be atleast 8 characters
+		if(password.length < 8) {
+			$("#change_cur_password").next().html("Enter a valid password");
+			errors++;
+		} else {
+			$("#change_cur_password").next().html("");
+		}
+
+		//password != new password
+		if(password == new_password || new_password.length < 8) {
+			$("#change_new_password").next().html("Must be valid and not the same as old one");
+			errors++;
+		} else {
+			$("#change_new_password").next().html("");
+		}
+
+		//retype new password
+		if(new_password != confirm_new_password) {
+			$("#change_confirm_new_password").next().html("Please retype new password");
+			errors++;
+		} else {
+			$("#change_confirm_new_password").next().html("");
+		}
+
+		if(errors > 0) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	//submit password change
+	$(document).on("click", "#update_password", function(e){
+
+		if(validate_password_update()){
+			e.preventDefault();
+			e.stopPropagation();
+
+			const id = $("#password_user_id").val();
+			const password = $("#change_cur_password").val();
+			const new_password = $("#change_new_password").val();
+			
+			$.ajax({
+				method: "POST",
+				url: "../controllers/update_password.php",
+				data: {
+					password_user_id: id,
+					change_cur_password: password,
+					change_new_password: new_password
+				},
+				success: function(data) {
+					if(data=="success"){
+						alert("password changed successfully");
+						$("#change_cur_password").val("");
+						$("#change_new_password").val("");
+						$("#change_confirm_new_password").val("");
+					} else {
+						alert("password change failed");
+					}
+				}
+			}); //end ajax password change
+
+		}//end validate_password_update()
+
+	}) //end submit password change
+
+	//confirmation delete item
+	$(document).on("click", ".delete-item-btn", function(e){
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		const id = $(this).attr("data-id");
+		console.log(id);
+
+		if(confirm("Are you sure you want to delete this item?")){
+			window.location.replace("../controllers/process_delete_item.php?id=" + id);
+		}
+
+	}); //end confirmation delete item
 
 }); //end document ready

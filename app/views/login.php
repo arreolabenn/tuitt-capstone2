@@ -1,14 +1,11 @@
 <?php
-	session_start();
-	if(isset($_SESSION["user"])) {
-		header("location: ../../index.php");
-	}
-
 	$pageTitle = "Login";
 	require_once("../partials/template.php");
 ?>
 
 <?php function get_page_content() { ?>
+
+	<?php if(!isset($_SESSION["user"])): ?>
 
 	<!-- container -->
 	<div class="container p-2">
@@ -17,7 +14,7 @@
 		<div class="row">
 
 			<!-- main col -->
-			<div class="col-lg-10 offset-md-1 col-lg-8 offset-lg-2">
+			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
 
 				<h1 class="my-3 text-center">LOGIN</h1>
 
@@ -47,5 +44,9 @@
 		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

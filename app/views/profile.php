@@ -1,9 +1,4 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["user"])) {
-		header("location: ../../index.php");
-	}
-
 	$pageTitle = "Profile";
 	require_once("../partials/template.php");
 ?>
@@ -12,13 +7,23 @@
 	global $conn;
 ?>
 
+<?php if(isset($_SESSION["user"])): ?>
+
 <?php $user = $_SESSION['user']; ?>
 	<div class="container p-2">
 		<div class="row">
+
+			<div class="col-12">
+				<h1 class="my-3 text-center">PROFILE</h1>
+			</div>
+
 			<div class="col-lg-3">
-				<div class="list-group" id="list-tab" role="tablist">
-					<a class="list-group-item" href="#profile" data-toggle="list" role="tab">
+				<div class="list-group mb-5" id="list-tab" role="tablist">
+					<a class="list-group-item active" href="#profile" data-toggle="list" role="tab">
 						User Information
+					</a>
+					<a class="list-group-item" href="#change_password" data-toggle="list" role="tab">
+						Change Password
 					</a>
 					<a class="list-group-item" href="#history" data-toggle="list" role="tab">
 						Order History
@@ -27,13 +32,14 @@
 			</div>
 			<div class="col-lg-9">
 				<div class="tab-content">
-					<div class="tab-pane" id="profile" role="tabpanel">
+
+					<div class="tab-pane fade show active" id="profile" role="tabpanel">
 						<h3>User Information</h3>
 						<form id="update_user_details">
 							<div class="container">
 								<input type="text" class="form-control" name="user_id" id="user_id" value="<?php echo $user['id'] ?>" hidden>
 
-								<label for="username">Username:</label>
+								<label for="username">Username</label>
 								<input type="text" class="form-control" id="username" name="username" value="<?php echo $user['username'] ?>" disabled>
 								<span class="validation text-danger"></span><br>
 
@@ -53,15 +59,41 @@
 								<input type="text" class="form-control" id="address" name="address" value="<?php echo $user['address'] ?>">
 								<span class="validation text-danger"></span><br>
 
-								<label for="password">Password (required to make changes)</label>
+								<label for="password">Password</label>
 								<input type="password" class="form-control" id="password" name="password">
+								<span class="validation text-danger"></span><br>
 
 								<br>
 								<button type="button" class="btn btn-primary mb-5" id="update_info">Update Info</button>
 							</div>
 						</form>
-					</div>
-					<div class="tab-pane" id="history" role="tabpanel">
+					</div> <!-- end user information -->
+
+					<div class="tab-pane fade" id="change_password" role="tabpanel">
+						<h3>Change Password</h3>
+						<form id="update_password_details" method="POST" action="../controllers/update_password.php">
+							<div class="container">
+								<input type="text" class="form-control" name="password_user_id" id="password_user_id" value="<?php echo $user['id'] ?>" hidden>
+
+								<label for="change_cur_password">Current Password</label>
+								<input type="password" class="form-control" id="change_cur_password" name="change_cur_password">
+								<span class="validation text-danger"></span><br>
+
+								<label for="change_new_password">New Password</label>
+								<input type="password" class="form-control" id="change_new_password" name="change_new_password">
+								<span class="validation text-danger"></span><br>
+
+								<label for="change_confirm_new_password">Confirm Password</label>
+								<input type="password" class="form-control" id="change_confirm_new_password" name="change_confirm_new_password">
+								<span class="validation text-danger"></span><br>
+
+								<br>
+								<button type="button" class="btn btn-primary mb-5" id="update_password">Update Password</button>
+							</div>
+						</form>
+					</div> <!-- end user information -->
+
+					<div class="tab-pane fade" id="history" role="tabpanel">
 						<div class="row">
 							<div class="col-md-6">
 								<h3>Order History</h3>
@@ -91,19 +123,25 @@
 
 									$transactions = mysqli_query($conn, $sql);
 									foreach($transactions as $transaction) { ?>
-                                          	<tr>
-                                          		<td><?php echo $transaction["transaction_code"] ?></td>
-                                          		<td><?php echo $transaction["purchase_date"] ?></td>
-                                          		<td><?php echo $transaction["status"] ?></td>
-                                          		<td><?php echo $transaction["payment_mode"] ?></td>
-                                          	</tr>
-                                        <?php  }  ?>
+	                                      	<tr>
+	                                      		<td><?php echo $transaction["transaction_code"] ?></td>
+	                                      		<td><?php echo $transaction["purchase_date"] ?></td>
+	                                      		<td><?php echo $transaction["status"] ?></td>
+	                                      		<td><?php echo $transaction["payment_mode"] ?></td>
+	                                      	</tr>
+	                                    <?php  }  ?>
 								</tbody>
 							</table>
 						</div>
-					</div>
+					</div> <!-- end order history -->
+
 				</div>
 			</div>
 		</div>
 	</div>
+
+<?php else: 
+	header("Location: ./error.php");
+endif;?>
+
 <?php } ?>
