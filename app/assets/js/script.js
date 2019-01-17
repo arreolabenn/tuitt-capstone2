@@ -309,8 +309,6 @@ $(document).ready( function() {
 			$("#password").next().html("");
 		}
 
-		console.log(errors);
-
 		if(errors > 0) {
 			return false;
 		} else {
@@ -321,10 +319,10 @@ $(document).ready( function() {
 	//submit profile form updates
 	$(document).on( "click", "#update_info", function(e){
 
-		e.preventDefault();
-		e.stopPropagation();
-
 		if(validate_user_update()) {
+
+			e.preventDefault();
+			e.stopPropagation();
 
 			const id = $("#user_id").val();
 			const firstname = $("#firstname").val();
@@ -345,6 +343,8 @@ $(document).ready( function() {
 					password: password
 				},
 				success: function(data) {
+
+					$("#password").val("");
 
 					if(data=="success") {
 						alert("changed user information");
@@ -418,11 +418,13 @@ $(document).ready( function() {
 					change_new_password: new_password
 				},
 				success: function(data) {
+
+					$("#change_cur_password").val("");
+					$("#change_new_password").val("");
+					$("#change_confirm_new_password").val("");
+
 					if(data=="success"){
 						alert("password changed successfully");
-						$("#change_cur_password").val("");
-						$("#change_new_password").val("");
-						$("#change_confirm_new_password").val("");
 					} else {
 						alert("password change failed");
 					}
@@ -447,5 +449,29 @@ $(document).ready( function() {
 		}
 
 	}); //end confirmation delete item
+
+	//revoke/make admin
+	$(document).on("click", ".grant_admin_btn", function() {
+
+		if(confirm("Are you sure?")) {
+
+			const id = $(this).attr("data-id");
+
+			$.ajax({
+				method: "POST",
+				url: "../controllers/grant_admin.php",
+				data: {
+					id: id
+				},
+				success: function(data) {
+					alert(data);
+					window.location.replace("../views/users.php");
+				}
+
+			}) // ajax revoke/make admin
+
+		} //end confirm
+
+	}); //end revoke/make admin
 
 }); //end document ready
