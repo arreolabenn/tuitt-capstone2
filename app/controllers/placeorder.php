@@ -192,8 +192,8 @@
 
 	    $redirectUrls = new RedirectUrls();
 	    $redirectUrls
-	        ->setReturnUrl('http://localhost/batch19/WTF/app/controllers/pay.php?success=true')
-	        ->setCancelUrl('http://localhost/batch19/WTF/app/controllers/pay.php?success=false');
+	        ->setReturnUrl('https://tuitt-wtf.herokuapp.com/app/controllers/pay.php?success=true')
+	        ->setCancelUrl('https://tuitt-wtf.herokuapp.com/app/controllers/pay.php?success=false');
 
 	    $payment = new Payment();
 	    $payment->setIntent('sale')
