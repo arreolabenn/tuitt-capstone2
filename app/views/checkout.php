@@ -29,15 +29,34 @@
 
 						<div class="row">
 
-							<div class="col-8">
-
+							<div class="col-md-8">
 								<h4>Shipping Address</h4>
 								<div class="form-group">
 									<input type="text" id="addressLine1" name="addressLine1" class="form-control" value="<?php echo $_SESSION['user']['address'] ?>">
 								</div>
-								
 							</div> <!-- end col -->
 
+							<div class="col-md-4">
+
+								<h4>Payment Modes</h4>
+
+								<select name="payment_mode" id="payment_mode" class="form-control">
+									
+									<?php 
+										$payment_modes_query = "SELECT * FROM payment_modes";
+										$payment_modes = mysqli_query($conn, $payment_modes_query);
+
+										foreach($payment_modes as $payment_mode) {
+											extract($payment_mode);
+									?>
+
+											<option value="<?php echo $id ?>"><?php echo $name ?></option>
+
+									<?php } ?>
+
+								</select>
+
+							</div> <!-- payment methods -->
 
 						</div> <!-- inner row 1 -->
 

@@ -474,4 +474,85 @@ $(document).ready( function() {
 
 	}); //end revoke/make admin
 
+	//forgot password
+	$("#fp_btn").click( function(){
+
+		if(confirm("Reset password?")) {
+			const username = $("#fp_username").val();
+			const firstname = $("#fp_firstname").val();
+			const lastname = $("#fp_lastname").val();
+
+			$.ajax({
+				url: "../controllers/process_forgot_password.php",
+				method: "POST",
+				data: {
+					fp_username: username,
+					fp_firstname: firstname,
+					fp_lastname: lastname
+				},
+				success: function(data) {
+					if(data == "failed") {
+						alert("password reset failed");
+					} else {
+						alert("password reset successful");
+					}
+				}
+			}) //end ajax forgot password
+
+		} //end confirm forgot password
+
+	}); //end forgot password
+
+	//order complete
+	$(document).on("click", ".order_complete_btn", function(e){
+
+		if(confirm("Are you sure you want to change order status to completed?")) {
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			const id = $(this).attr("data-id");
+
+			$.ajax({
+				url: "../controllers/order_complete.php",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function() {
+					alert("order status changed to completed");
+					window.location.replace("../views/orders.php");
+				}
+			});//end ajax order complete
+
+		} //end confirm order complete
+
+	}); //end order complete
+
+	//order complete
+	$(document).on("click", ".order_cancel_btn", function(e){
+
+		if(confirm("Are you sure you want to change order status to cancelled?")) {
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			const id = $(this).attr("data-id");
+
+			$.ajax({
+				url: "../controllers/order_cancel.php",
+				method: "POST",
+				data: {
+					id: id
+				},
+				success: function() {
+					alert("order status changed to cancelled");
+					window.location.replace("../views/orders.php");
+				}
+			});//end ajax order complete
+
+		} //end confirm order complete
+
+	}); //end order complete
+
 }); //end document ready

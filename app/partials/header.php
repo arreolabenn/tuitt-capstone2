@@ -43,6 +43,10 @@
 				<li class="nav-item <?php if($pageTitle=="Users") echo "active"; ?>">
 					<a class="nav-link" href="./users.php">Users</a>
 				</li>
+
+				<li class="nav-item <?php if($pageTitle=="Orders") echo "active"; ?>">
+					<a class="nav-link" href="./orders.php">Orders</a>
+				</li>
 			<?php endif; ?>
 
 			<?php if(isset($_SESSION["user"])): ?>

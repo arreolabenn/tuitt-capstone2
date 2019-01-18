@@ -36,6 +36,7 @@
 
 				<div class="text-center py-4 mb-5">
 					<a href="register.php" class="btn btn-secondary">Register</a>
+					<a href="./forgot_password.php" class="btn btn-secondary">Forgot Password</a>
 					<button type="button" id="loginBtn" class="btn btn-primary">Login</button>
 				</div>
 
