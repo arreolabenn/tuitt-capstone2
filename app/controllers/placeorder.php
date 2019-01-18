@@ -187,8 +187,8 @@
 	    $transaction = new Transaction();
 	    $transaction ->setAmount($amount)
 	                ->setItemList($item_list)
-	                ->setDescription('Payment for Qstore Purchase')
-	                ->setInvoiceNumber(uniqid("Qstore_"));
+	                ->setDescription('Payment for WTF Purchase')
+	                ->setInvoiceNumber(uniqid("WTF_"));
 
 	    $redirectUrls = new RedirectUrls();
 	    $redirectUrls
