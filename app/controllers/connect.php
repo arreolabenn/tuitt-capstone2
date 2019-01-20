@@ -5,6 +5,11 @@
 	$password = "09252012";
 	$database_name = "ecom_db_tuitt";
 
+	// $host = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $database_name = "ecom_db_tuitt";
+
 	$conn = mysqli_connect($host, $username, $password, $database_name);
 
 	if(!$conn) {

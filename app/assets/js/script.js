@@ -149,7 +149,7 @@ $(document).ready( function() {
 		e.stopPropagation();
 
 		let item_id = $(e.target).attr("data-id");
-		console.log(item_id);
+		let item_name = $(e.target).next().val();
 		let item_quantity = parseInt($(e.target).prev().val());
 		if(isNaN(item_quantity) || item_quantity <= 0) {
 			item_quantity = 0;
@@ -165,14 +165,33 @@ $(document).ready( function() {
 				item_quantity: item_quantity,
 				update_from_cart_page: 0
 			},
-			success: function(data) {
-				$("#cart-count").removeClass("animated bounce fast").delay(100).queue(function(next){
-					$("#cart-count").addClass("animated bounce fast").dequeue();
-				});
-				
+			success: function(data) {				
 				if(data > 999) {
 					$("#cart-count").html("999+");
 				} else $("#cart-count").html(data);
+
+				let swal_title = item_quantity + " " + item_name + "(s) added to cart";
+				let swal_title2 = item_name + " completely removed from cart";
+
+				if(item_quantity > 0) {
+					swal.fire({
+						title: swal_title,
+						toast: true,
+						timer: 2500,
+						position: "top-end",
+						confirmButtonColor: "#FF673B",
+						customClass: "rounded-0"
+					});
+				} else {
+					swal.fire({
+						title: swal_title2,
+						toast: true,
+						timer: 2500,
+						position: "top-end",
+						confirmButtonColor: "#FF673B",
+						customClass: "rounded-0"
+					});
+				}
 			}
 		}); // end prep for add to cart ajax
 
@@ -211,10 +230,6 @@ $(document).ready( function() {
 				update_from_cart_page: 1
 			},
 			success: (data) => {
-				$("#cart-count").removeClass("animated bounce fast").delay(100).queue(function(next){
-					$("#cart-count").addClass("animated bounce fast").dequeue();
-				});
-
 				if(data > 999) {
 					$("#cart-count").html("999+");
 				} else $("#cart-count").html(data);
@@ -226,37 +241,51 @@ $(document).ready( function() {
 	//delete cart button
 	$(document).on('click', '.itemRemove', function(e){
 
-		e.preventDefault();
-		e.stopPropagation();
+		let confirmation = swal.fire({
+			text: "Are you sure you want to delete this item?",
+			confirmButtonText: "Yes",
+			confirmButtonColor: "#e5552d",
+			showCancelButton: true,
+			cancelButtonText: "No"
+		}).then( function(result){
 
-		let item_id = $(e.target).attr("data-id");
-
-		$.ajax({
-			url: "../controllers/update_cart.php",
-			method: "POST",
-			data: {
-				item_id: item_id,
-				item_quantity: 0
-			},
-			beforeSend: function() {
-				return confirm("Are you sure you want to delete?");
-			},
-			success: function(data) {
-				$("#cart-count").removeClass("animated bounce fast").delay(100).queue(function(next){
-					$("#cart-count").addClass("animated bounce fast").dequeue();
-				});
-
-				if(data > 999) {
-					$("#cart-count").html("999+");
-				} else $("#cart-count").html(data);
-
-				$(e.target).parents("tr").remove();
-
-				getTotal();
-
-				window.location.replace("../views/cart.php");
+			if(result.value) {
+				proceedDeletion();
 			}
-		}); //end delete cart ajax
+
+		});
+
+		function proceedDeletion() {
+			e.preventDefault();
+			e.stopPropagation();
+
+			let item_id = $(e.target).attr("data-id");
+
+			$.ajax({
+				url: "../controllers/update_cart.php",
+				method: "POST",
+				data: {
+					item_id: item_id,
+					item_quantity: 0
+				},
+				success: function(data) {
+					if(data > 999) {
+						$("#cart-count").html("999+");
+					} else $("#cart-count").html(data);
+
+					$(e.target).parents("tr").remove();
+
+					getTotal();
+					swal.fire({
+						text: "Item deleted",
+						confirmButtonColor: "#e5552d"
+					}).then(function(result){
+						window.location.replace("../views/cart.php");
+					});
+					
+				}
+			}); //end delete cart ajax
+		}
 
 	}); //end delete cart button
 

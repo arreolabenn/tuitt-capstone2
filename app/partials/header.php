@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-	<a class="navbar-brand" href="">Where's The Food?</a>
+
+<nav class="navbar navbar-expand-md navbar-light nav-custom mb-2 sticky-top">
+
+	<span class="nav-brand">WHERE's THE FOOD?</span>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links">
 		<span class="navbar-toggler-icon"></span>
@@ -19,7 +21,7 @@
 				<a class="nav-link" href="./catalog.php">Catalog</a>
 			</li>
 
-			<li class="nav-item <?php if($pageTitle=="Cart") echo "active"; ?>">
+			<li class="nav-item <?php if($pageTitle=="Cart" || $pageTitle=="Checkout" || $pageTitle=="Confirmation") echo "active"; ?>">
 				<a class="nav-link" href="./cart.php">Cart
 					<span class="badge badge-danger text-light" id="cart-count">
 						

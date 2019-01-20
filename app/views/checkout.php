@@ -21,13 +21,13 @@
 			
 			<div class="col-12">
 				
-				<h1 class="my-3 text-center">Hello, welcome to your checkout page</h1>
+				<h1 class="my-3 text-center">CHECKOUT</h1>
 
 				<form method="POST" action="../controllers/placeorder.php">
 					
 					<div class="container">
 
-						<div class="row">
+						<div class="row mb-5">
 
 							<div class="col-md-8">
 								<h4>Shipping Address</h4>
@@ -94,7 +94,7 @@
 						</div> <!-- end inner row 2 -->
 
 						<hr>
-						<button type="submit" class="btn btn-primary btn-block">Place Order Now</button>
+						<button type="submit" class="btn btn-orange btn-block">Place Order Now</button>
 
 						<div class="row cart-items my-3">
 

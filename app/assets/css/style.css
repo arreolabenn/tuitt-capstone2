@@ -1,8 +1,115 @@
-/** {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-}*/
+
+* {
+	font-family: 'Open Sans', sans-serif;
+	color: #2A2A2A;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+}
+
+/* unvisited link */
+a:link {
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  text-decoration: none;
+}
+
+input, button, a, li {
+	border-radius: 0 !important;
+}
+
+body {
+	background-color: #FAFAFC;
+}
+
+/*presets*/
+
+.nav-custom {
+	background-color: #FAFAFC;
+}
+
+.border-none {
+	border: 0;
+}
+
+.option-selected {
+	background-color: #C6BDAE;
+	color: white;
+}
+
+.option-selected > li {
+	background-color: #C6BDAE;
+	color: white;
+}
+
+.btn-transparent {
+	background-color: transparent;
+}
+
+.btn-orange {
+	color: white;
+	background-color: #FF673B;
+	border: 0;
+}
+
+.btn-orange:hover {
+	color: white;
+	background-color: #e5552d;
+}
+
+.bg-orange {
+	background-color: #FF673B;
+}
+
+/*end presets*/
+
+
+/*bootstrap class edits */
+
+.nav-brand {
+	color: #FF673B;
+	font-family: 'Permanent Marker', cursive;
+}
+
+.nav-item {
+	margin-right: 20px;
+}
+
+.card-img-top {
+	min-height: 200px;
+	max-height: 200px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.pagination > li.page-item > a.page-link {
+	color: #2A2A2A;
+}
+
+.pagination > li.active > a.page-link {
+	border-color: #C6BDAE;
+	background: #C6BDAE;
+	color: #fff;
+}
+/* end bootstrap class edits */
+
+
+/* footer */
 
 body { 
 	min-height: 100vh;
@@ -14,9 +121,9 @@ body {
 	bottom: 0;
 	transform: translate(0, 100%);
 	min-height: 60px;
+	background-color: #FF673B;
+
 }
 
-/*.list-group-item {
-	padding: 0;
-	margin: 0;
-}*/
+/* end footer */
+
