@@ -77,48 +77,63 @@ $(document).ready( function() {
 
 	$("#registerBtn").click( (e) => {
 
-		if(validate_registration_form()) {
+		swal.fire({
+			text: "Are you sure you want to register with these details?",
+			confirmButtonColor: "#FF673B",
+			showCancelButton: true
+		}).then( function(result){
+			if(result.value == true){
+				createUser();
+			}
+		})
+
+		function createUser() {
+
+			if(validate_registration_form()) {
+				
+				let username = $("#username").val();
+				let password = $("#password").val();
+				let confirmPassword = $("#confirmPassword").val();
+				let firstname = $("#firstname").val();
+				let lastname = $("#lastname").val();
+				let email = $("#email").val();
+				let address = $("#address").val();
+
+				$.ajax({
+					url: "../controllers/create_user.php",
+					method: "POST",
+					data: {
+						username: username,
+						password: password,
+						firstname: firstname,
+						lastname: lastname,
+						email: email,
+						address: address
+					},
+					success: (data) => {
+
+						if(data == "user_exists") {
+							$("#username").next().html("Username already exists");
+						} else {
+							swal.fire({
+								text: "User Created Successfully",
+								confirmButtonColor: "#FF673B"
+							}).then(function(result){
+								window.location.replace("../../index.php");
+							})
+						}
+					} //end #regiterBtn success
+
+				}); //end #regiterBtn ajax
 			
-			let username = $("#username").val();
-			let password = $("#password").val();
-			let confirmPassword = $("#confirmPassword").val();
-			let firstname = $("#firstname").val();
-			let lastname = $("#lastname").val();
-			let email = $("#email").val();
-			let address = $("#address").val();
+			} // end #regiterBtn if(validate_registration_form)
 
-			$.ajax({
-				url: "../controllers/create_user.php",
-				method: "POST",
-				data: {
-					username: username,
-					password: password,
-					firstname: firstname,
-					lastname: lastname,
-					email: email,
-					address: address
-				},
-				success: (data) => {
-
-					if(data == "user_exists") {
-						$("#username").next().html("Username already exists");
-					} else {
-
-					alert("user created successfully");
-					window.location.replace("../../index.php");
-
-					}
-				} //end #regiterBtn success
-
-			}); //end #regiterBtn ajax
-		
-		} // end #regiterBtn if(validate_registration_form)
+		}
 
 	}); //end #registerBtn click
 
 	//LOGIN and SESSION
-	$("#loginBtn").click( function(e){
-
+	function loginNow(){
 		let username = $("#username").val();
 		let password = $("#password").val();
 
@@ -133,10 +148,32 @@ $(document).ready( function() {
 				if(data == "login_failed") {
 					$("#username").next().html("Please provide correct credentials");
 				} else {
-					window.location.replace("../views/home.php");
+					swal.fire({
+						text: "Login Success",
+						confirmButtonColor: "#FF673B"
+					}).then( function(result){
+						window.location.replace("../views/home.php");
+					});	
 				}
 			}
 		}); //end #loginBtn ajax
+	}
+
+	$("#username").on("keydown", function(e){
+		if(e.which == 13 || e.keyCode == 13) {
+			loginNow();
+		}
+	});
+
+	$("#password").on("keydown", function(e){
+		if(e.which == 13 || e.keyCode == 13) {
+			loginNow();
+		}
+	});
+
+	$("#loginBtn").click( function(e){
+
+		loginNow();
 
 	}); //end #loginBtn click
 
@@ -244,7 +281,7 @@ $(document).ready( function() {
 		let confirmation = swal.fire({
 			text: "Are you sure you want to delete this item?",
 			confirmButtonText: "Yes",
-			confirmButtonColor: "#e5552d",
+			confirmButtonColor: "#FF673B",
 			showCancelButton: true,
 			cancelButtonText: "No"
 		}).then( function(result){
@@ -278,7 +315,7 @@ $(document).ready( function() {
 					getTotal();
 					swal.fire({
 						text: "Item deleted",
-						confirmButtonColor: "#e5552d"
+						confirmButtonColor: "#FF673B"
 					}).then(function(result){
 						window.location.replace("../views/cart.php");
 					});
@@ -288,6 +325,23 @@ $(document).ready( function() {
 		}
 
 	}); //end delete cart button
+
+	//proceed with checkout btn
+	$("#placeorderBtn").on("click", function(e){
+
+		swal.fire({
+			text: "Finalize order?",
+			confirmButtonColor: "#FF673B",
+			showCancelButton: true
+		}).then( function(result){
+
+			if(result.value == true){
+				$("#placeorderForm").submit();
+			}
+
+		});
+
+	}); //end proceed with checkout btn
 
 	function validate_user_update() {
 
@@ -376,14 +430,25 @@ $(document).ready( function() {
 					$("#password").val("");
 
 					if(data=="success") {
-						alert("changed user information");
+						swal.fire({
+							text: "User Details Updated",
+							confirmButtonColor: "#FF673B"
+						})
 					} else {
-						alert("invalid password");
+						swal.fire({
+							text: "Invalid Password",
+							confirmButtonColor: "#FF673B"
+						})
 					}
 
 				}
 			}); //end submit profile ajax
 
+		} else {
+			swal.fire({
+				text: "All fields must be valid before continuing",
+				confirmButtonColor: "#FF673B"
+			})
 		} //end validate_user_update()
 
 	}); //end submit profile form updates
@@ -453,9 +518,15 @@ $(document).ready( function() {
 					$("#change_confirm_new_password").val("");
 
 					if(data=="success"){
-						alert("password changed successfully");
+						swal.fire({
+							text: "Password Changed Successfully",
+							confirmButtonColor: "#FF673B"
+						})
 					} else {
-						alert("password change failed");
+						swal.fire({
+							text: "Current Password Invalid",
+							confirmButtonColor: "#FF673B"
+						})
 					}
 				}
 			}); //end ajax password change
@@ -506,7 +577,17 @@ $(document).ready( function() {
 	//forgot password
 	$("#fp_btn").click( function(){
 
-		if(confirm("Reset password?")) {
+		swal.fire({
+			text: "Reset Password?",
+			confirmButtonColor: "#FF673B",
+			showCancelButton: true
+		}).then( function(result){
+			if(result.value == true) {
+				reset_password();
+			}
+		})
+
+		function reset_password() {
 			const username = $("#fp_username").val();
 			const firstname = $("#fp_firstname").val();
 			const lastname = $("#fp_lastname").val();
@@ -521,14 +602,22 @@ $(document).ready( function() {
 				},
 				success: function(data) {
 					if(data == "failed") {
-						alert("password reset failed");
+						swal.fire({
+							text: "Password Reset Failed",
+							confirmButtonColor: "#FF673B"
+						})
 					} else {
-						alert("password reset successful");
+						swal.fire({
+							text: "Password Reset Successful",
+							confirmButtonColor: "#FF673B"
+						}).then( function(result){
+							window.location.replace("../views/login.php")
+						})
 					}
 				}
 			}) //end ajax forgot password
 
-		} //end confirm forgot password
+		}
 
 	}); //end forgot password
 

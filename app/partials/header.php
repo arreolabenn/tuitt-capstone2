@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-md navbar-light nav-custom mb-2 sticky-top">
+<nav class="navbar navbar-expand-md navbar-light nav-custom">
 
 	<span class="nav-brand">WHERE's THE FOOD?</span>
 
@@ -62,7 +62,7 @@
 				</li>
 			<?php else: ?>
 
-				<li class="nav-item <?php if($pageTitle=="Login") echo "active"; ?>">
+				<li class="nav-item <?php if($pageTitle=="Login" || $pageTitle=="Forgot Password") echo "active"; ?>">
 					<a class="nav-link" href="./login.php">Login</a>
 				</li>
 

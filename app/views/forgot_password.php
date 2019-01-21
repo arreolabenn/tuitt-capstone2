@@ -1,9 +1,11 @@
 <?php
-	$pageTitle = "Home";
+	$pageTitle = "Forgot Password";
 	require_once("../partials/template.php");
 ?>
 
 <?php function get_page_content() { ?>
+
+	<?php if(!isset($_SESSION["user"])): ?>
 
 	<!-- container -->
 	<div class="container">
@@ -11,32 +13,44 @@
 		<!-- main row -->
 		<div class="row">
 
-			<div class="offset-0 col-md-10 offset-md-1">
+			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
 
-				<h1 class="my-3 text-center">FORGOT PASSWORD</h1>
+				<div class="bg-white px-3 py-2 rounded shadow my-5">
 
-				<form method="POST">
-					<div class="form-group">
-						<label for="fp_username">Enter your username</label>
-						<input type="name" name="fp_username" id="fp_username" class="form-control">
-					</div>
+					<h1 class="my-3 text-center">FORGOT PASSWORD</h1>
 
-					<div class="form-group">
-						<label for="fp_firstname">Enter your first name</label>
-						<input type="name" name="fp_firstname" id="fp_firstname" class="form-control">
-					</div>
+					<form>
+						<div class="form-group">
+							<label for="fp_username">Username:</label>
+							<input type="name" name="fp_username" id="fp_username" class="form-control" placeholder="Enter Username">
+						</div>
 
-					<div class="form-group">
-						<label for="fp_lastname">Enter your last name</label>
-						<input type="name" name="fp_lastname" id="fp_lastname" class="form-control">
-					</div>
+						<div class="form-group">
+							<label for="fp_firstname">First Name:</label>
+							<input type="name" name="fp_firstname" id="fp_firstname" class="form-control" placeholder="Enter First Name">
+						</div>
 
-					<button type="button" id="fp_btn" class="btn btn-primary btn-block">Reset Password</button>
-				</form>
+						<div class="form-group">
+							<label for="fp_lastname">Last Name:</label>
+							<input type="name" name="fp_lastname" id="fp_lastname" class="form-control" placeholder="Enter Last Name">
+						</div>
+
+						<div class="py-3">
+							<button type="button" id="fp_btn" class="btn btn-orange btn-block my-1">Reset Password</button>
+							<a href="./login.php" class="btn btn-secondary btn-block my-1">Login</a>
+						</div>
+					</form>
+
+				</div>
+
 			</div>
 
 		</div> <!-- end main row -->
 
 	</div> <!-- end container -->
+
+	<?php else: 
+		header("Location: ./error.php");
+	endif;?>
 
 <?php } ?>

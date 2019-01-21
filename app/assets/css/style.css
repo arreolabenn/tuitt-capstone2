@@ -9,6 +9,16 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 600;
 }
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent; 
+}
+
 /* unvisited link */
 a:link {
   text-decoration: none;
@@ -38,6 +48,43 @@ body {
 }
 
 /*presets*/
+
+.login-bg {
+	position: relative;
+	background: url("../images/essentials/login.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.fp-bg {
+	position: relative;
+	background: url("../images/essentials/forgot_password.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.register-bg {
+	position: relative;
+	background: url("../images/essentials/register.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.confirmation-bg {
+	position: relative;
+	background: url("../images/essentials/confirmation.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.login-bg:before, .fp-bg:before, .register-bg:before, .confirmation-bg:before  {
+	content: "";
+	position: absolute;
+	background-color: rgba(255, 103, 59, 0.1);
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
 
 .nav-custom {
 	background-color: #FAFAFC;
@@ -76,6 +123,10 @@ body {
 	background-color: #FF673B;
 }
 
+.bg-dirty-white {
+	background-color: #FAFAFC;
+}
+
 /*end presets*/
 
 
@@ -106,11 +157,22 @@ body {
 	background: #C6BDAE;
 	color: #fff;
 }
+
+.list-group > .list-group-item {
+	color: #FF673B;
+	border-color: transparent;
+}
+
+.list-group > .active {
+	color: white;
+	background-color: #FF673B;
+	border-color: #FF673B;
+}
+
 /* end bootstrap class edits */
 
 
-/* footer */
-
+/* nav and footer */
 body { 
 	min-height: 100vh;
 	position: relative;
@@ -125,5 +187,5 @@ body {
 
 }
 
-/* end footer */
+/* end nav and footer */
 

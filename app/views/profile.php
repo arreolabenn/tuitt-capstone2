@@ -64,7 +64,7 @@
 								<span class="validation text-danger"></span><br>
 
 								<br>
-								<button type="button" class="btn btn-primary mb-5" id="update_info">Update Info</button>
+								<button type="button" class="btn btn-orange mb-5" id="update_info">Update Info</button>
 							</div>
 						</form>
 					</div> <!-- end user information -->
@@ -88,7 +88,7 @@
 								<span class="validation text-danger"></span><br>
 
 								<br>
-								<button type="button" class="btn btn-primary mb-5" id="update_password">Update Password</button>
+								<button type="button" class="btn btn-orange mb-5" id="update_password">Update Password</button>
 							</div>
 						</form>
 					</div> <!-- end user information -->

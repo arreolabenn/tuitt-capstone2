@@ -41,7 +41,17 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.1/dist/sweetalert2.all.min.js"></script>
 
 </head>
-<body>
+<body class="<?php 
+				if($pageTitle == "Login"): 
+					echo "login-bg";
+				elseif($pageTitle == "Forgot Password"): 
+					echo "fp-bg";
+				elseif($pageTitle == "Register"): 
+					echo "register-bg";
+				elseif($pageTitle == "Confirmation"):
+					echo "confirmation-bg";
+				endif; 
+			?>">
 	
 	<?php
 		require_once("header.php");

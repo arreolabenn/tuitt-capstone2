@@ -23,7 +23,7 @@
 				
 				<h1 class="my-3 text-center">CHECKOUT</h1>
 
-				<form method="POST" action="../controllers/placeorder.php">
+				<form id="placeorderForm" method="POST" action="../controllers/placeorder.php">
 					
 					<div class="container">
 
@@ -94,7 +94,7 @@
 						</div> <!-- end inner row 2 -->
 
 						<hr>
-						<button type="submit" class="btn btn-orange btn-block">Place Order Now</button>
+						<button type="button" id="placeorderBtn" class="btn btn-orange btn-block">Place Order Now</button>
 
 						<div class="row cart-items my-3">
 
