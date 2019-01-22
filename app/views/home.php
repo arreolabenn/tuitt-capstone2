@@ -29,7 +29,7 @@
 			<div class="col-12">
 				<h2 class="text-center mb-3">CUSTOMER FAVORITES</h2>
 
-				<div class="row mb-5">
+				<div class="row">
 
 					<?php
 						$sql = "SELECT * FROM items ORDER BY price LIMIT 4";
@@ -43,7 +43,7 @@
 						<div class="text-center mb-3">
 							<img src="<?php echo $image_path ?>" class="w-100">
 						</div>
-						<h4 class="text-center"><small><?php echo $name ?></small></h4>
+						<h4 class="text-center mb-5"><small><?php echo $name ?></small></h4>
 					</div>
 
 					<?php } ?>
