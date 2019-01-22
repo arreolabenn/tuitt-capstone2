@@ -22,6 +22,6 @@
 	
 	}
 
-	header("Location: " . $_SERVER["HTTP_REFERER"]);
+	header("Location: ../views/catalog.php?page=1");
 
 ?>

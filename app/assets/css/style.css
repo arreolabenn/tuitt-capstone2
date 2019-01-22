@@ -49,6 +49,28 @@ body {
 
 /*presets*/
 
+.shipping-text {
+	position: relative;
+	width: 100%;
+	height: 36px
+}
+
+.shipping-text:after {
+	position: absolute;
+	text-align: center;
+	content: "#FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING #FREE SHIPPING";
+	background-color: #C6BDAE;
+	top: 0;
+	left: 0;
+	font-size: 18px;
+	line-height: 36px;
+	color: rgba(250, 250, 252, 0.5);
+	z-index: -1;
+	font-family: 'Permanent Marker', cursive;
+	word-break: break-all;
+	padding: 0px 5px;
+}
+
 .login-bg {
 	position: relative;
 	background: url("../images/essentials/login.jpg");
@@ -96,9 +118,15 @@ body {
 .welcome-bg {
 	min-height: 40vh;
 	background: url("../images/essentials/welcome.png");
-	background-size: 50vw auto;
+	background-size: 65vw auto;
 	background-position: right bottom;
 	background-repeat: no-repeat;
+}
+
+.founder-pic {
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
 }
 
 .nav-custom {
@@ -225,3 +253,29 @@ body {
 
 /* end nav and footer */
 
+/* MD */
+@media (min-width: 768px) {
+
+	.welcome-bg {
+		min-height: 40vh;
+		background: url("../images/essentials/welcome.png");
+		background-size: 55vw auto;
+		background-position: right bottom;
+		background-repeat: no-repeat;
+	}
+
+}
+
+
+/* LG */
+@media (min-width: 992px) {
+
+	.welcome-bg {
+		min-height: 40vh;
+		background: url("../images/essentials/welcome.png");
+		background-size: 45vw auto;
+		background-position: right bottom;
+		background-repeat: no-repeat;
+	}
+
+}

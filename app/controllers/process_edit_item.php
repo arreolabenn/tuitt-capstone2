@@ -9,6 +9,8 @@
 	$description = $_POST["item_description"];
 	$category_id = $_POST["item_category"];
 
+	echo $description;
+
 	if(isset($_FILES["image"]) && $_FILES["image"]["size"] > 0 ) {
 		$sql1 = "SELECT image_path FROM items WHERE id=$id";
 		$result = mysqli_query($conn, $sql1);
@@ -33,7 +35,6 @@
 			SET name='$name', price=$price, description='$description', category_id='$category_id'
 			WHERE id=$id";
 		$result = mysqli_query($conn, $sql);
-
 	}
 
 	$_SESSION["edited"] = "edited item";

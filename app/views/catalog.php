@@ -105,7 +105,7 @@
 
 						<?php
 							$where_query = "";
-							if(isset($_GET["category"])) $where_query = "WHERE category_id='" . $_GET["category"] . "'";
+							if(isset($_SESSION["category"])) $where_query = "WHERE category_id='" . $_SESSION["category"] . "'";
 
 							$order_by_query = "";
 							if(isset($_SESSION["sort"])) $order_by_query = " ORDER BY " . $_SESSION["sort"];
@@ -164,7 +164,7 @@
 												$_GET["page"] = 1;
 											}
 
-											$page_sql = "SELECT * FROM items";
+											$page_sql = "SELECT * FROM items " . $where_query;
 											$page_query = mysqli_query($conn, $page_sql);
 											$page_rows = mysqli_num_rows($page_query);
 											$ceil = ceil(($page_rows/$result_per_page));

@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 22, 2019 at 09:42 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Host: 127.0.0.1
+-- Generation Time: Jan 22, 2019 at 05:38 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ecom_db`
+-- Database: `ecom_db_tuitt`
 --
 
 -- --------------------------------------------------------
@@ -62,12 +62,17 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `price`, `description`, `image_path`, `category_id`) VALUES
-(1, 'Egg', '10.00', 'Eggscellent', '../assets/images/item_egg.jpg', 1),
-(2, 'Tapsilog', '69.00', 'Marinated beef with poached egg on garlic rice', '../assets/images/item_tapsilog.jpg', 1),
-(3, 'Pares', '45.00', 'Beef broth with bone marrow and intestines', '../assets/images/item_pares.jpg', 2),
+(1, 'Egg', '15.00', 'Everyones favorite breakfast companion', '../assets/images/1548171741-egg.jpg', 1),
+(2, 'Tapsilog', '49.00', 'Marinated beef with poached egg on garlic rice', '../assets/images/item_tapsilog.jpg', 1),
+(3, 'Pares', '59.00', 'Beef broth with bone marrow and intestines', '../assets/images/item_pares.jpg', 2),
 (4, 'Tuyo', '120.00', 'Dried Mackerel', '../assets/images/item_tuyo.jpg', 2),
-(5, 'Adobong Manok', '45.00', 'Chicken marinated in soy sauce and vinegar with black pepper and bayleaf', '../assets/images/item_adobong_manok.jpg', 3),
-(15, 'Chicken Tinola', '69.00', 'Wow! Tinola', '../assets/images/item_tinola.jpg', 3);
+(5, 'Adobo', '49.00', 'Chicken marinated in soy sauce and vinegar with black pepper and bayleaf\r\n', '../assets/images/item_adobong_manok.jpg', 3),
+(15, 'Tinola', '59.00', 'Chicken with wedges of green papaya, and leaves of the siling labuyo chili pepper in broth flavored with ginger, onions and fish sauce', '../assets/images/item_tinola.jpg', 3),
+(24, 'Kare Kare', '129.00', 'Meat and vegetables with thick savory peanut sauce', '../assets/images/1548172462-kare-kare.jpg', 2),
+(25, 'Sinigang', '99.00', 'Sour and savoury soup with meat and vegetables', '../assets/images/1548172584-sinigang.jpg', 3),
+(26, 'Fried Chicken', '69.00', 'Everyones favorite childhood food', '../assets/images/1548172676-chicken.jpg', 2),
+(27, 'Nilaga', '119.00', 'Beef in clear broth with potato, saba banana, and pechay', '../assets/images/1548172857-nilaga.jpg', 3),
+(28, 'Tocilog', '49.00', 'Marinated pork with poached egg on garlic rice', '../assets/images/1548173028-tocilog.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -310,7 +315,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `orders`
