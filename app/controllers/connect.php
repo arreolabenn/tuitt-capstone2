@@ -1,14 +1,14 @@
 <?php 
 
-	// $host = "db4free.net";
-	// $username = "wheresthefoodph";
-	// $password = "09252012";
-	// $database_name = "ecom_db_tuitt";
-
-	$host = "localhost";
-	$username = "root";
-	$password = "";
+	$host = "db4free.net";
+	$username = "wheresthefoodph";
+	$password = "09252012";
 	$database_name = "ecom_db_tuitt";
+
+	// $host = "localhost";
+	// $username = "root";
+	// $password = "";
+	// $database_name = "ecom_db_tuitt";
 
 	// $host = "localhost";
 	// $username = "root";
