@@ -146,7 +146,10 @@ $(document).ready( function() {
 			},
 			success: function(data) {
 				if(data == "login_failed") {
-					$("#username").next().html("Please provide correct credentials");
+					swal.fire({
+						text: "Please provide correct credentials",
+						confirmButtonColor: "#FF673B"
+					});
 				} else {
 					swal.fire({
 						text: "Login Success",
@@ -542,35 +545,66 @@ $(document).ready( function() {
 		e.stopPropagation();
 
 		const id = $(this).attr("data-id");
-		console.log(id);
 
-		if(confirm("Are you sure you want to delete this item?")){
-			window.location.replace("../controllers/process_delete_item.php?id=" + id);
-		}
+		swal.fire({
+			text: "Are you sure you want to delete this item?",
+			confirmButtonColor: "#FF673B",
+			showCancelButton: true
+		}).then( function(result){
+			if(result.value == true) {
+
+				swal.fire({
+					text: "Item Deleted",
+					confirmButtonColor: "#FF673B"
+				}).then( function(){
+					window.location.replace("../controllers/process_delete_item.php?id=" + id);
+				})
+			}
+		})
 
 	}); //end confirmation delete item
 
 	//revoke/make admin
 	$(document).on("click", ".grant_admin_btn", function() {
 
-		if(confirm("Are you sure?")) {
+		function revoke_grant(id) {
 
-			const id = $(this).attr("data-id");
+			swal.fire({
+				text: "Are you sure?",
+				confirmButtonColor: "#FF673B",
+				showCancelButton: true
+			}).then( function(result){
 
-			$.ajax({
-				method: "POST",
-				url: "../controllers/grant_admin.php",
-				data: {
-					id: id
-				},
-				success: function(data) {
-					alert(data);
-					window.location.replace("../views/users.php");
-				}
+				if(result.value==true){
+					
+					$.ajax({
+						method: "POST",
+						url: "../controllers/grant_admin.php",
+						data: {
+							id: id
+						},
+						beforeSend: function (){
+							
+						},
+						success: function(data) {
+							swal.fire({
+								text: data,
+								confirmButtonColor: "#FF673B",
+							}).then( function(){
+								window.location.replace("../views/users.php");
+							});
+							
+						}
+					}) // ajax revoke/make admin
 
-			}) // ajax revoke/make admin
+				} //end if result
 
-		} //end confirm
+			}); // end swal.fire
+
+		}
+
+		const id = $(this).attr("data-id");
+		revoke_grant(id);
 
 	}); //end revoke/make admin
 
@@ -608,7 +642,7 @@ $(document).ready( function() {
 						})
 					} else {
 						swal.fire({
-							text: "Password Reset Successful",
+							text: "Please check your e-mail for password",
 							confirmButtonColor: "#FF673B"
 						}).then( function(result){
 							window.location.replace("../views/login.php")
@@ -624,53 +658,118 @@ $(document).ready( function() {
 	//order complete
 	$(document).on("click", ".order_complete_btn", function(e){
 
-		if(confirm("Are you sure you want to change order status to completed?")) {
+		e.preventDefault();
+		e.stopPropagation();
 
-			e.preventDefault();
-			e.stopPropagation();
+		const id = $(this).attr("data-id");
 
-			const id = $(this).attr("data-id");
+		function order_complete(id) {
 
-			$.ajax({
-				url: "../controllers/order_complete.php",
-				method: "POST",
-				data: {
-					id: id
-				},
-				success: function() {
-					alert("order status changed to completed");
-					window.location.replace("../views/orders.php");
+			swal.fire({
+				text: "Change Status to Completed?",
+				confirmButtonColor: "#FF673B",
+				showCancelButton: true
+			}).then( function(result) {
+				if(result.value == true) {
+					$.ajax({
+						url: "../controllers/order_complete.php",
+						method: "POST",
+						data: {
+							id: id
+						},
+						success: function() {
+							swal.fire({
+								text: "Order Status Changed to Completed"
+							}).then( function(){
+								window.location.replace("../views/orders.php");
+							});
+						}
+					});//end ajax order complete
 				}
-			});//end ajax order complete
+			});
 
-		} //end confirm order complete
+		}
+
+		order_complete(id);
 
 	}); //end order complete
 
 	//order complete
 	$(document).on("click", ".order_cancel_btn", function(e){
 
-		if(confirm("Are you sure you want to change order status to cancelled?")) {
-
 			e.preventDefault();
 			e.stopPropagation();
 
 			const id = $(this).attr("data-id");
 
-			$.ajax({
-				url: "../controllers/order_cancel.php",
-				method: "POST",
-				data: {
-					id: id
-				},
-				success: function() {
-					alert("order status changed to cancelled");
-					window.location.replace("../views/orders.php");
-				}
-			});//end ajax order complete
+			function order_cancel(id) {
 
-		} //end confirm order complete
+				swal.fire({
+					text: "Change Status to Canceled?",
+					confirmButtonColor: "#FF673B",
+					showCancelButton: true
+				}).then( function(result) {
+					if(result.value == true) {
+						$.ajax({
+							url: "../controllers/order_cancel.php",
+							method: "POST",
+							data: {
+								id: id
+							},
+							success: function() {
+								swal.fire({
+									text: "Order Status Changed to Canceled"
+								}).then( function(){
+									window.location.replace("../views/orders.php");
+								});
+							}
+						}); //end ajax order cancel
+					}
+				});
+
+			}
+
+			order_cancel(id);
 
 	}); //end order complete
+
+	//logout message
+	$("#logout-message").ready( function(){
+
+		const lg = $("#logout-message").html();
+
+		if(lg == ""){
+			swal.fire({
+				text: "Logged-out successfully",
+				confirmButtonColor: "#FF673B"
+			});
+		}
+	}) //end logout message
+
+	//added new item message
+	$("#added-new-item").ready( function(){
+
+		const ani = $("#added-new-item").html();
+
+		if(ani == ""){
+			swal.fire({
+				text: "Added New Item",
+				confirmButtonColor: "#FF673B"
+			});
+		}
+	}) //end added new item message
+
+	//edited message
+	$("#edited-item").ready( function(){
+
+		const ei = $("#edited-item").html();
+
+		if(ei == ""){
+			swal.fire({
+				text: "Edited Item",
+				confirmButtonColor: "#FF673B"
+			});
+		}
+	}) //end edited item message
 
 }); //end document ready

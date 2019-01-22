@@ -4,15 +4,28 @@
 ?>
 
 <?php function get_page_content() { ?>
+<?php global $conn ?>
 
-	<div class="container  p-2">
+	<?php if(isset($_SESSION["status"]) && $_SESSION["status"] == "logout"): ?>
+		<span id="logout-message"></span>
+	<?php 
+		unset($_SESSION["status"]);
+		endif; 
+	?>
+
+	<div class="container">
 		
-		<div class="jumbotron bg-light text-dark mt-3 text-center shadow">
-			
-			<h1>Where's The Food?</h1>
-			<p>Your all-time favorite pinoy foods</p>
+		<div class="row">
 
-		</div> <!-- end jumbotron -->
+			<div class="col-12">
+				<div class="welcome-container p-3 mt-3">
+				<div class="welcome-bg">
+					<h1 class="text-dirty-white bg-orange p-1 d-inline">WHERE'S THE FOOD?</h1>
+				</div>
+			</div>
+			</div>
+
+		</div>
 
 	</div> <!-- end container -->
 

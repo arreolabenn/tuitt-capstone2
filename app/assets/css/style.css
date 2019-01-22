@@ -77,13 +77,28 @@ body {
 	background-size: cover;
 }
 
-.login-bg:before, .fp-bg:before, .register-bg:before, .confirmation-bg:before  {
+.login-bg:before, .fp-bg:before, .register-bg:before, .confirmation-bg:before {
 	content: "";
 	position: absolute;
 	background-color: rgba(255, 103, 59, 0.1);
 	top: 0;
 	bottom: 0;
 	width: 100%;
+}
+
+.welcome-container {
+	background: url("../images/essentials/login.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+}
+
+.welcome-bg {
+	min-height: 40vh;
+	background: url("../images/essentials/welcome.png");
+	background-size: 50vw auto;
+	background-position: right bottom;
+	background-repeat: no-repeat;
 }
 
 .nav-custom {
@@ -123,8 +138,24 @@ body {
 	background-color: #FF673B;
 }
 
+.text-orange {
+	color: #FF673B;
+}
+
 .bg-dirty-white {
 	background-color: #FAFAFC;
+}
+
+.text-dirty-white {
+	color: #FAFAFC;
+}
+
+.bg-brown {
+	background-color: #C6BDAE;
+}
+
+.logo-font {
+	font-family: 'Permanent Marker', cursive;
 }
 
 /*end presets*/
@@ -167,6 +198,11 @@ body {
 	color: white;
 	background-color: #FF673B;
 	border-color: #FF673B;
+}
+
+.dropdown-menu {
+	background-color: #FAFAFC;
+	border: none;
 }
 
 /* end bootstrap class edits */

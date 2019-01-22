@@ -58,7 +58,7 @@
 						<input type="file" id="image" class="form-control" name="image" required>
 					</div>
 
-					<button type="submit" class="btn btn-block btn-primary mb-5">Add New Item</button>
+					<button type="submit" class="btn btn-block btn-orange mb-5">Add New Item</button>
 
 				</form>
 

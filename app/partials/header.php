@@ -56,8 +56,8 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle active" href="#" data-toggle="dropdown">Welcome, <?php echo $_SESSION["user"]["firstname"] ?>!</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="./profile.php">Profile</a>
-						<a class="dropdown-item" href="../controllers/logout.php">Logout</a>
+						<a class="dropdown-item" href="./profile.php">> Profile</a>
+						<a class="dropdown-item" href="../controllers/logout.php">> Logout</a>
 					</div>
 				</li>
 			<?php else: ?>

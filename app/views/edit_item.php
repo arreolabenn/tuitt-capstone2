@@ -25,7 +25,7 @@
 
 				<h1 class="my-3 text-center">EDIT ITEM</h1>
 
-				<form action="../controllers/process_edit_item.php" method="POST">
+				<form action="../controllers/process_edit_item.php" method="POST" enctype="multipart/form-data">
 					
 					<div class="form-group">
 						<label for="item_name">Name</label>
@@ -61,8 +61,13 @@
 						</select>
 					</div>
 
+					<div class="form-group">
+						<label for="image">Image (not required)</label>
+						<input type="file" id="image" class="form-control" name="image">
+					</div>
+
 					<input type="hidden" name="item_id" id="item_id" value="<?php echo $item["id"] ?>">
-					<button type="submit" class="btn btn-primary btn-block">Update Changes</button>
+					<button type="submit" class="btn btn-orange btn-block mb-5">Update Changes</button>
 
 				</form>
 				

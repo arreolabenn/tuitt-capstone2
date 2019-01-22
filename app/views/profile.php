@@ -25,9 +25,11 @@
 					<a class="list-group-item" href="#change_password" data-toggle="list" role="tab">
 						Change Password
 					</a>
+					<?php if($_SESSION["user"]["role_id"] != 1): ?>
 					<a class="list-group-item" href="#history" data-toggle="list" role="tab">
 						Order History
 					</a>
+					<?php endif; ?>
 				</div>
 			</div>
 			<div class="col-lg-9">

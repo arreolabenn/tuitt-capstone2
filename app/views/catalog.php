@@ -110,7 +110,7 @@
 							$order_by_query = "";
 							if(isset($_SESSION["sort"])) $order_by_query = " ORDER BY " . $_SESSION["sort"];
 
-							$result_per_page = 3;
+							$result_per_page = 6;
 							$result_offset = isset($_GET["page"]) ? " OFFSET ". ($_GET["page"] - 1) * $result_per_page : "";
 							$for_pages_add_query = " LIMIT $result_per_page " . $result_offset;
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2019 at 03:39 AM
+-- Generation Time: Jan 22, 2019 at 09:42 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -89,13 +89,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `transaction_code`, `purchase_date`, `status_id`, `payment_mode_id`) VALUES
-(41, 1, '414D7E40CFF5AD7D-1547616338', '2019-01-15 22:25:38', 1, 1),
-(42, 1, '3DD52BE9C7E38778-1547617632', '2019-01-15 22:47:12', 1, 1),
-(43, 1, '648A7807AF1A8D80-1547618413', '2019-01-15 23:00:13', 1, 1),
-(44, 1, 'EC00E3DAF1591CB0-1547618947', '2019-01-15 23:09:07', 1, 1),
-(45, 1, '5B501CA7A451743D-1547619016', '2019-01-15 23:10:16', 1, 1),
-(46, 1, '1C6C1482E0360B55-1547619019', '2019-01-15 23:10:19', 1, 1),
-(47, 5, '64C8385C1F117FB1-1547700885', '2019-01-16 21:54:45', 3, 1);
+(47, 5, '64C8385C1F117FB1-1547700885', '2019-01-16 21:54:45', 3, 1),
+(48, 9, 'D09DED44DB194946-1548053824', '2019-01-20 23:57:04', 2, 1),
+(49, 5, '0AAC752EE4A7232B-1548120321', '2019-01-21 18:25:21', 1, 1),
+(50, 5, 'F18BBE10B2D98AEB-1548120348', '2019-01-21 18:25:48', 3, 1),
+(51, 5, 'EABE4ACA4D529BCA-1548120375', '2019-01-21 18:26:15', 1, 1),
+(52, 5, '09E6179F099F73AD-1548120389', '2019-01-21 18:26:29', 1, 1),
+(53, 5, '1F948ABB1AA3EA03-1548120412', '2019-01-21 18:26:52', 3, 1),
+(54, 9, '00419B4EAF6C0444-1548127207', '2019-01-21 20:20:07', 1, 1),
+(55, 9, '034E6417C1AFC44E-1548127233', '2019-01-21 20:20:33', 1, 1),
+(56, 9, '5E4A04E198DBB454-1548127247', '2019-01-21 20:20:47', 2, 1),
+(57, 9, '636A4C7BBED4F2A7-1548127262', '2019-01-21 20:21:02', 1, 1),
+(58, 9, '771654209A73603F-1548127276', '2019-01-21 20:21:16', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -116,17 +121,36 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `price`, `quantity`) VALUES
-(76, 41, 2, '69.00', 5),
-(77, 41, 1, '10.00', 5),
-(78, 42, 1, '10.00', 3),
-(79, 42, 2, '69.00', 3),
-(80, 42, 3, '45.00', 2),
-(81, 42, 4, '120.00', 2),
-(82, 42, 5, '42.50', 4),
-(83, 43, 1, '10.00', 666),
-(84, 44, 5, '42.50', 6),
-(85, 45, 4, '120.00', 10),
-(86, 47, 1, '10.00', 2);
+(86, 47, 1, '10.00', 2),
+(87, 48, 15, '69.00', 2),
+(88, 48, 5, '45.00', 2),
+(89, 48, 1, '10.00', 2),
+(90, 49, 5, '45.00', 1),
+(91, 49, 15, '69.00', 1),
+(92, 49, 1, '10.00', 1),
+(93, 49, 3, '45.00', 1),
+(94, 49, 2, '69.00', 1),
+(95, 49, 4, '120.00', 1),
+(96, 50, 2, '69.00', 10),
+(97, 51, 5, '45.00', 3),
+(98, 51, 15, '69.00', 3),
+(99, 51, 1, '10.00', 3),
+(100, 52, 3, '45.00', 2),
+(101, 52, 2, '69.00', 2),
+(102, 52, 4, '120.00', 2),
+(103, 53, 5, '45.00', 1),
+(104, 53, 15, '69.00', 1),
+(105, 53, 1, '10.00', 1),
+(106, 53, 3, '45.00', 1),
+(107, 53, 2, '69.00', 1),
+(108, 53, 4, '120.00', 1),
+(109, 54, 5, '45.00', 3),
+(110, 54, 15, '69.00', 3),
+(111, 55, 2, '69.00', 20),
+(112, 56, 4, '120.00', 5),
+(113, 57, 1, '10.00', 10),
+(114, 58, 2, '69.00', 3),
+(115, 58, 3, '45.00', 3);
 
 -- --------------------------------------------------------
 
@@ -208,9 +232,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `password`, `email`, `address`, `role_id`) VALUES
-(1, 'Admin', 'Admin', 'admin', '$2y$10$OxrZy.RLcojM5yvBTqQioOyS3nvcQF.yw8l/ONbPQL.l6fltSsbdG', 'benedictmartinii.arreola@gmail.com', '2437 Taal St. Malate Manila', 1),
-(5, 'Alyssa', 'Cape', 'alyssacape', '$2y$10$htk8/vWaymkeZ9bQYZYU6OMdTd9B93hWF4nuw6lzc9QnGRRJqJSLW', 'alyssacape@gmail.com', '2437 Taal St. Malate Manila', 1),
-(9, 'Axis', 'Arreola', 'axisarreola', '$2y$10$94d5ayv79VLO6uDc3jXoYeD34Uvo6BzVdzDKf8QxI0GOYyQaJD4gy', 'benedictmartinii.arreola@gmail.com', '2437 Taal St. Malate Manila', 2);
+(1, 'Admin', 'Admin', 'admin', '$2y$10$OxrZy.RLcojM5yvBTqQioOyS3nvcQF.yw8l/ONbPQL.l6fltSsbdG', 'wheresthefoodphilippines@gmail.com', '2437 Taal St. Malate Manila', 1),
+(5, 'Alyssa', 'Cape', 'alyssacape', '$2y$10$htk8/vWaymkeZ9bQYZYU6OMdTd9B93hWF4nuw6lzc9QnGRRJqJSLW', 'alyssacape@gmail.com', '2437 Taal St. Malate Manila', 2),
+(9, 'Axis', 'Arreola', 'axisarreola', '$2y$10$hNNH7aIIAKy5wDpXIEQBEOxMt6yEnOObNkgU7WYv2Y6PLU5D4tnUy', 'benedictmartinii.arreola@gmail.com', '2437 Taal St. Malate Manila', 2),
+(11, '1234567890', '1234567890', '1234567890', '$2y$10$qyPnnauF4zhlaJzUpW5omu111VeiH.2xJ9..7b68M4JuMobXJGiIi', '1234567890@gmail.com', '1234567890', 2);
 
 --
 -- Indexes for dumped tables
@@ -285,19 +310,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `payment_modes`
@@ -321,7 +346,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
