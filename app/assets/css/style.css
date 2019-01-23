@@ -206,8 +206,7 @@ body {
 }
 
 .card-img-top {
-	min-height: 200px;
-	max-height: 200px;
+	height: 150px;
 	width: 100%;
 	object-fit: cover;
 }
@@ -236,6 +235,11 @@ body {
 .dropdown-menu {
 	background-color: #FAFAFC;
 	border: none;
+}
+
+.card-adjust {
+	background-color: transparent;
+	border: 1px solid transparent;
 }
 
 /* end bootstrap class edits */

@@ -40,10 +40,12 @@
 					?>
 
 					<div class="col-6 col-md-3">
-						<div class="text-center mb-3">
-							<img src="<?php echo $image_path ?>" class="w-100">
+						<div class="card h-100 card-adjust">
+							<img src="<?php echo $image_path ?>" class="card-img-top">
+							<div class="card-body">
+								<h4 class="text-center card-title"><small><?php echo $name ?></small></h4>
+							</div>
 						</div>
-						<h4 class="text-center mb-5"><small><?php echo $name ?></small></h4>
 					</div>
 
 					<?php } ?>
