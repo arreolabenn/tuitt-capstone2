@@ -51,7 +51,7 @@
 					echo "fp-bg";
 				elseif($pageTitle == "Register"): 
 					echo "register-bg";
-				elseif($pageTitle == "Confirmation"):
+				elseif($pageTitle == "Confirmation" || $pageTitle == "Error"):
 					echo "confirmation-bg";
 				endif; 
 			?>">
