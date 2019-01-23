@@ -59,8 +59,8 @@
 									<td class="text-center"><?php echo $status ?></td>
 									<td class="text-center" colspan="2">
 										<?php if($status_id == 1): ?>
-											<button data-id="<?php echo $id ?>" class="btn btn-success order_complete_btn">Complete Order</button>
-											<button data-id="<?php echo $id ?>" class="btn btn-danger order_cancel_btn">Cancel Order</button>
+											<button data-id="<?php echo $id ?>" class="btn btn-orange btn-block order_complete_btn">Complete Order</button>
+											<button data-id="<?php echo $id ?>" class="btn btn-danger btn-block order_cancel_btn">Cancel Order</button>
 										<?php endif; ?>
 									</td>
 								</tr>

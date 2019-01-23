@@ -191,6 +191,11 @@ body {
 
 /*bootstrap class edits */
 
+.dropdown > .dropdown-menu > .dropdown-item:active {
+	color: #FAFAFC;
+	background-color: #FF673B;
+}
+
 .nav-brand {
 	color: #FF673B;
 	font-family: 'Permanent Marker', cursive;
