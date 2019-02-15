@@ -1,9 +1,9 @@
 <?php 
 
-	$host = "db4free.net";
-	$username = "wheresthefoodph";
-	$password = "09252012";
-	$database_name = "ecom_db_tuitt";
+	$host = "sql306.epizy.com";
+	$username = "epiz_23455717";
+	$password = "BIiqBewXMY";
+	$database_name = "epiz_23455717_wtf";
 
 	// $host = "localhost";
 	// $username = "root";
